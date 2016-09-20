@@ -30,6 +30,6 @@ Build a dashboard to check all translation status.
 
 
 #### Resources
-Unbabel's API: http://developers.unbabel.com/
-Hackernews API: https://github.com/HackerNews/API
+* Unbabel's API: http://developers.unbabel.com/
+* Hackernews API: https://github.com/HackerNews/API
 
