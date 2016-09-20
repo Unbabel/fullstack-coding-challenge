@@ -6,6 +6,8 @@ Welcome to our Fullstack Challenge repository. This README will guide you on how
 
 In case you are doing this to apply for our open positions for a Fullstack Developer make sure you first check the available jobs at [https://unbabel.com/jobs](https://unbabel.com/jobs)
 
+Please fork this repo before you start working on the challenge. We will evaluate the code on the fork.
+
 **FYI:** Please understand that this challenge is not decisive if you are applying to work at [Unbabel](https://unbabel.com/jobs). There are no right and wrong answers. This is just an opportunity for us both to work together and get to know each other in a more technical way.
 
 ## Challenge
