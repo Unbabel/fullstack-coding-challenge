@@ -27,3 +27,9 @@ Build a dashboard to check all translation status.
 * Only use Unbabel's Translation API on sandbox mode
 * Have the news titles translated to 2 languages
 * Have unit tests
+
+
+#### Resources
+Unbabel's API: http://developers.unbabel.com/
+Hackernews API: https://github.com/HackerNews/API
+
