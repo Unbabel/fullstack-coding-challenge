@@ -15,20 +15,27 @@ Please fork this repo before you start working on the challenge. We will evaluat
 
 #### Build a multilingual Hackernews.
 
-Create a Flask service that replicates Hackernews website, showing just the 1º page from the most voted news and their comments. This page must be kept updated with the original website.
+Create a multilingual clone of the Hackernews website, showing just the top 10 most voted news and their comments. 
+This website must be kept updated with the original hackernews website (every 10 minutes).
 
-The replica has to be translated using Unbabel’s Translation API.
+Translations must be done using the Unbabel API in sandbox mode.
 
-Build a dashboard to check all translation status.
+Build a dashboard to check the status of all translations.
 
 
 #### Requirements
 * Use Flask web framework
 * Use Bootstrap
-* For database use MongoDB
+* For MongoDB
+* Create a scalable application. 
 * Only use Unbabel's Translation API on sandbox mode
 * Have the news titles translated to 2 languages
 * Have unit tests
+
+
+#### Notes
+* We dont really care much about css but please dont make our eyes suffer. 
+* Page load time shouldnt exceed 2 secs 
 
 
 #### Resources
