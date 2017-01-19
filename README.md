@@ -18,7 +18,7 @@ Please fork this repo before you start working on the challenge. We will evaluat
 Create a multilingual clone of the Hackernews website, showing just the top 10 most voted news and their comments. 
 This website must be kept updated with the original hackernews website (every 10 minutes).
 
-Translations must be done using the Unbabel API in sandbox mode.
+Translations must be done using the Unbabel API in sandbox mode. (Ask whoever has been in contact with you about the credentials)
 
 Build a dashboard to check the status of all translations.
 
