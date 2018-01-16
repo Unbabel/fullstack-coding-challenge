@@ -26,7 +26,7 @@ Build a dashboard to check the status of all translations.
 #### Requirements
 * Use Flask web framework
 * Use Bootstrap
-* For MongoDB
+* Use MongoDB or PostgreSQL
 * Create a scalable application. 
 * Only use Unbabel's Translation API on sandbox mode
 * Have the news titles translated to 2 languages
