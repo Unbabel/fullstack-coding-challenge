@@ -12,33 +12,23 @@ Please fork this repo before you start working on the challenge. We will evaluat
 
 ## Challenge
 
-
-#### Build a multilingual Hackernews.
-
-Create a multilingual clone of the Hackernews website, showing just the top 10 most voted news and their comments. 
-This website must be kept updated with the original hackernews website (every 10 minutes).
-
-Translations must be done using the Unbabel API in sandbox mode. (Ask whoever has been in contact with you about the credentials)
-
-Build a dashboard to check the status of all translations.
-
+1) Build a basic web app with a simple input field that takes an English (EN) input translates it to Spanish (ES).
+2) When a new translation is requested it should add to a list below the input field (showing one of three status: requested, pending or translated) - (note: always request human translation)
+3) The list should be dynamically ordered by the size of the translated messages
 
 #### Requirements
 * Use Flask web framework
 * Use Bootstrap
-* Use MongoDB or PostgreSQL
+* Use PostgreSQL
 * Create a scalable application. 
 * Only use Unbabel's Translation API on sandbox mode
-* Have the news titles translated to 2 languages
-* Have unit tests
+* Have tests
 
 
 #### Notes
-* We dont really care much about css but please dont make our eyes suffer. 
-* Page load time shouldnt exceed 2 secs 
+* Page load time shouldnt exceed 1 second
 
 
 #### Resources
 * Unbabel's API: http://developers.unbabel.com/
-* Hackernews API: https://github.com/HackerNews/API
 
