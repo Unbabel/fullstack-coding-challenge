@@ -16,7 +16,7 @@ We're going to build a very simple translation web app based on the Unbabel API.
 
 You can find more info about the api at [https://developers.unbabel.com](https://developers.unbabel.com)
 
-1) Request an API Key to your hiring manager or point of contact for the hiring process at Unbabel so you can use the API for this tutorial.
+1) Request an API Key to your hiring manager or point of contact for the hiring process at Unbabel so you can use the API for this tutorial.  
 2) Build a basic web app with a simple input field that takes an English (EN) input translates it to Spanish (ES).  
 3) When a new translation is requested it should add to a list below the input field (showing one of three status: requested, pending or translated) - (note: always request human translation)   
 4) The list should be dynamically ordered by the size of the translated messages   
