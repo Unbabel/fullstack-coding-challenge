@@ -12,9 +12,9 @@ Please fork this repo before you start working on the challenge. We will evaluat
 
 ## Challenge
 
-1) Build a basic web app with a simple input field that takes an English (EN) input translates it to Spanish (ES).
-2) When a new translation is requested it should add to a list below the input field (showing one of three status: requested, pending or translated) - (note: always request human translation)
-3) The list should be dynamically ordered by the size of the translated messages
+1) Build a basic web app with a simple input field that takes an English (EN) input translates it to Spanish (ES).  
+2) When a new translation is requested it should add to a list below the input field (showing one of three status: requested, pending or translated) - (note: always request human translation)   
+3) The list should be dynamically ordered by the size of the translated messages   
 
 #### Requirements
 * Use Flask web framework
