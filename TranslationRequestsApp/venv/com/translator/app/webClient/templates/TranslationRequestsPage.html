@@ -1,0 +1,43 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/fixes.html" as fixes %}
+
+{% block title %} English-Spanish Translator {% endblock %}
+
+{% block head %}
+    {{super()}}
+    {{fixes.ie8()}}
+{% endblock %}
+
+{% block content %}
+    {{super()}}
+    <h2>English-Spanish Translator</h2>
+    <form action="/SubmitRequest">
+        Text to Translate: <br>
+        <input type="text" name="submittedText" />
+        <input type="submit" value="Translate"/>
+        <br>
+        <hr>
+    </form>
+    <br>
+    <form action="/pending">
+        <input type="submit" value="Refresh"/>
+        <table style="width:100%">
+            <tr>
+                <th>Translation ID</th>
+                <th>Submitted Text</th>
+                <th>Translation Result</th>
+                <th>Request Status</th>
+            </tr>
+            {% for uid, txt, trans_result, state in data %}
+                <tr>
+                    <td> {{ uid }} </td>
+                    <td> {{ txt }} </td>
+                    <td> {{ trans_result }} </td>
+                    <td> {{ state }} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+{% endblock %}
+
+

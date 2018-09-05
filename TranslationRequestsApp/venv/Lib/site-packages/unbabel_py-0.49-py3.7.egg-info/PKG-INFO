@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: unbabel-py
+Version: 0.49
+Summary: Python Wrapper around Unbabel HTTP API
+Home-page: https://github.com/Unbabel/unbabel-py
+Author: Joao Graca
+Author-email: joao@unbabel.com
+License: UNKNOWN
+Download-URL: https://github.com/Unbabel/unbabel-py/archive/0.49.tar.gz
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python 
+Classifier: Topic :: Text Processing

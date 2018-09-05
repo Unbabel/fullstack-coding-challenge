@@ -1,0 +1,10 @@
+setup.cfg
+setup.py
+unbabel/__init__.py
+unbabel/api.py
+unbabel/xliff_converter.py
+unbabel_py.egg-info/PKG-INFO
+unbabel_py.egg-info/SOURCES.txt
+unbabel_py.egg-info/dependency_links.txt
+unbabel_py.egg-info/requires.txt
+unbabel_py.egg-info/top_level.txt
