@@ -1,1 +1,1 @@
-web: python __init__.py
+web: sh -c 'cd ./UnbabelChallenge/ && python __init__.py'
