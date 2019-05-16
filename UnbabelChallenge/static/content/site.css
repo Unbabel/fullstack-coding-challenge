@@ -1,0 +1,186 @@
+
+.body {
+    background-color: #f1f1f1;
+}
+
+a:hover {
+    text-decoration: underline !important;
+}
+
+.dropdown > button:hover {
+    background-color: #3843D0 !important;
+}
+
+.navbar-new {
+    background: #3843D0 !important;
+}
+
+.trsicon {
+    margin-top: 12vh;
+    margin-left: 2vh;
+}
+
+.trsbox {
+    min-width: 80%;
+    min-height: 30vh;
+    /*box-shadow: 2px 5px 19px #808080;*/
+    font-size: 16px;
+    border: #3843D0;
+    border-style: dashed;
+    border-width: 2px;
+    background-color: #fcfcfc;
+}
+
+.trsbttn {
+    width: 100%;
+    background-color: #3843D0;
+    border: transparent;
+    position: absolute;
+    bottom: 1px;
+}
+
+.trsfrm {
+    padding-bottom: 6vh;
+}
+
+.navtitle {
+    float: left !important;
+    font-size: 17px;
+    color: white !important;
+    font-weight: 700;
+}
+
+.navpagesa {
+    font-size: large;
+    color: white !important;
+    font-weight: 700;
+    margin-top: -1vh;
+}
+
+navpagesa:hover {
+    text-decoration: underline !important;
+}
+
+.navpagesul {
+    float: right;
+    flex-direction: row;
+}
+
+.navadj {
+    border-color: transparent;
+    box-shadow: -1px 5px 19px #808080;
+    margin-top: -1vh !important;
+    padding-bottom: 1vh !important;
+}
+
+.column {
+    padding-left: 0px;
+    padding-right: 2vh;
+}
+
+.row {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.dropdown {
+    padding-top: 5vh;
+    width: 45% !important;
+}
+
+.dropdown-btn {
+    width: 100%;
+    background-color: transparent;
+    color: black;
+    border: #3843D0;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+    .dropdown-btn:hover {
+        background-color: #3843D0 !important;
+    }
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+}
+
+.table-head {
+    background-color: #3843D0;
+    color: white;
+    text-align: -webkit-center;
+}
+
+.table-row {
+    text-align: -webkit-center;
+}
+
+.form {
+    width: 30%;
+    background-color: #3041d9;
+    border-radius: 5px;
+    margin-top: 8vh;
+}
+
+.form-control-n {
+    width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+}
+
+.form-label {
+    color: white;
+    min-width: 100% !important;
+    text-align:left !important;
+}
+
+.form-col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.submit-btn {
+    margin-bottom: 3vh;
+    margin-top: 3vh;
+    width: 50%;
+    background-color: #ffffff00;
+    color: #ffffff;
+    font-size: small;
+    border-color: #ffffff;
+    border-radius: 25px;
+}
+
+    .submit-btn:hover {
+        background-color: white;
+        color: #3041d9;
+    }
+
+.delete-me {
+    background-color:transparent;
+    border: 0px;
+}
+
+.centeredth {
+    vertical-align: middle !important;
+}
+
+    .centeredth > i {
+        font-size: 16px;
+        vertical-align: middle !important;
+    }
+
+    .centeredth > a {
+        color: white;
+        border: 0px;
+    }
+
+    .centeredth > a :hover {
+        color: white;
+        border: 0px;
+    }

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>2f8ad934-3307-4e23-a76f-591f812242f1</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <ProjectTypeGuids>{789894c7-04a9-4a11-a6b5-3f4435165112};{1b580a1a-fdb3-4b32-83e1-6407eb2722e6};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <StartupFile>runserver.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <LaunchProvider>Web launcher</LaunchProvider>
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <OutputPath>.</OutputPath>
+    <SuppressCollectPythonCloudServiceFiles>true</SuppressCollectPythonCloudServiceFiles>
+    <Name>UnbabelChallenge</Name>
+    <RootNamespace>UnbabelChallenge</RootNamespace>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="runserver.py" />
+    <Compile Include="UnbabelChallenge\database_model.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Exceptions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Model\Languages.py" />
+    <Compile Include="UnbabelChallenge\Model\User.py" />
+    <Compile Include="UnbabelChallenge\Model\Translation.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Model\__init__.py" />
+    <Compile Include="UnbabelChallenge\Services\authentication_service.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Services\db_connection.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Services\translation_service.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="UnbabelChallenge\Services\__init__.py" />
+    <Compile Include="UnbabelChallenge\__init__.py" />
+    <Compile Include="UnbabelChallenge\views.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="UnbabelChallenge\" />
+    <Folder Include="UnbabelChallenge\Model\" />
+    <Folder Include="UnbabelChallenge\static\assets\" />
+    <Folder Include="UnbabelChallenge\Services\" />
+    <Folder Include="UnbabelChallenge\static\" />
+    <Folder Include="UnbabelChallenge\static\content\" />
+    <Folder Include="UnbabelChallenge\static\fonts\" />
+    <Folder Include="UnbabelChallenge\static\scripts\" />
+    <Folder Include="UnbabelChallenge\templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="FolderProfile.pubxml" />
+    <Content Include="requirements.txt" />
+    <Compile Include="UnbabelChallenge\static\assets\unbabel_logo.png" />
+    <Content Include="UnbabelChallenge\static\content\bootstrap.css" />
+    <Content Include="UnbabelChallenge\static\content\bootstrap.min.css" />
+    <Content Include="UnbabelChallenge\static\content\site.css" />
+    <Content Include="UnbabelChallenge\static\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="UnbabelChallenge\static\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="UnbabelChallenge\static\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="UnbabelChallenge\static\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="UnbabelChallenge\static\scripts\bootstrap.js" />
+    <Content Include="UnbabelChallenge\static\scripts\bootstrap.min.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery-1.10.2.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery-1.10.2.min.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery-1.10.2.min.map" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery.validate-vsdoc.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery.validate.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery.validate.min.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="UnbabelChallenge\static\scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="UnbabelChallenge\static\scripts\main.js" />
+    <Content Include="UnbabelChallenge\static\scripts\modernizr-2.6.2.js" />
+    <Content Include="UnbabelChallenge\static\scripts\respond.js" />
+    <Content Include="UnbabelChallenge\static\scripts\respond.min.js" />
+    <Content Include="UnbabelChallenge\static\scripts\_references.js" />
+    <Content Include="UnbabelChallenge\templates\translation.html" />
+    <Content Include="UnbabelChallenge\templates\login.html" />
+    <Content Include="UnbabelChallenge\templates\registration.html" />
+    <Content Include="UnbabelChallenge\templates\translate.html" />
+    <Content Include="UnbabelChallenge\templates\layout.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Web.targets" />
+  <!-- Specify pre- and post-build commands in the BeforeBuild and 
+       AfterBuild targets below. -->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

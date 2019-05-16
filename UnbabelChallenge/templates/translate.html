@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div id="app">
+    <div class="md-form trsfrm">
+        <h3 style="color:#3843D0; padding-top:3vh;">New Translation</h3>
+        <form action='/add-translation' method = "post" id="newTranslation" style="margin-top:3vh">
+            <textarea name="text" id="textToTranslate" class="md-textarea form-control trsbox" rows="3"></textarea>
+            <div class="container body-content row">
+
+                <div class="column dropdown">
+                    <h4 style="color:#3843D0; margin-bottom:2vh">Original</h4>
+                    <select id="sourceLanguage" name="sourceLanguage" class="btn btn-secondary dropdown-toggle dropdown-btn">
+                        <option style="background-color:white !important" class="dropdown-item" value="choose_a_language"> Choose a language </option>
+                        {% for language in languages %}
+                        <option style="background-color:white !important" class="dropdown-item" value="{{ language.short_name }}">{{ language.full_name }} ({{ language.short_name }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="column dropdown">
+                    <h4 style="color:#3843D0; margin-bottom:2vh">Target</h4>
+                    <select id="targetLanguage" name="targetLanguage" class="btn btn-secondary dropdown-toggle dropdown-btn">
+                        <option style="background-color:white !important" class="dropdown-item" value="choose_a_language"> Choose a language </option>
+                        {% for language in languages %}
+                        <option style="background-color:white !important" class="dropdown-item" value="{{ language.short_name }}">{{ language.full_name }} ({{ language.short_name }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="column dropdown" style="width:10% !important">
+                    <button type="submit" id="translate-button" class="btn btn-primary trsbttn" href="#" role="button" onClick="return verifyFields()">Translate</button>
+                </div>
+            </div>
+
+        </form>
+
+
+        <h3 style="color:#3843D0; margin-top:15vh">Past translations</h3>
+        <div class="table-responsive" style="margin-top:3vh;">
+            <table class="table table-striped">
+                <thead class="table-head">
+                    <tr>
+                        <th class="centeredth" scope="col">Id</th>
+                        <th class="centeredth" scope="col">Original Language</th>
+                        <th class="centeredth" scope="col">Target Language</th>
+                        <th class="centeredth" id="reverse" scope="col">
+                            Text
+                            <a class="centeredth" href="#arrow">
+                                <i id ="arrow" class="material-icons">
+                                    arrow_downward
+                                </i>
+                            </a>
+                        </th>
+                        <th class="centeredth" scope="col">Status</th>
+                        <th class="centeredth" scope="col">Request Date</th>
+                        <th class="centeredth" style="min-width:10%" scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for translation in translations %}
+                    <tr id={{ translation.id }} class="table-row">
+                        <td> {{ translation.id }} </td>
+                        <td> {{ sources[translations.index(translation)] }} </td>
+                        <td> {{ targets[translations.index(translation)] }} </td>
+                        <td> {{ translation.text }} </td>
+                        <td> {{ translation.status }} </td>
+                        <td> {{ translation.request_date.strftime('%d/%m/%Y %H:%M') }} </td>
+                        <td>
+                            {% if translation.callback_url != None %}
+                            <a href="/translation/{{ translation.callback_url }}">
+                                <i class="material-icons" style="color:#3843D0">
+                                    edit
+                                </i>
+                            </a>
+
+                            <Button id="{{ translation.callback_url }}" class="delete-me">
+                                <i class="material-icons" style="color:#3843D0">
+                                    delete
+                                </i>
+                            </Button>
+                            {% else %}
+                            N/A
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

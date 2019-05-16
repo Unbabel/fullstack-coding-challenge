@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+
+<style>
+    .form-tr {
+        width: 80%;
+        background-color: white;
+        border-radius: 5px;
+        margin-top: 8vh;
+    }
+
+    .form-head {
+        max-width: 100% !important;
+        background-color: #3041d9;
+        height: 100% !important;
+        border: #3041d9;
+        border-style: dashed;
+        border-width: 2px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .form-body {
+        max-width: 100% !important;
+        background-color: #3041d9;
+        height: 100% !important;
+        border: #3041d9;
+        border-width: 2px;
+        border-style: dashed;
+        background-color: white;
+        border-top-width: 0px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+    }
+
+    .form-title {
+        color: white;
+        min-height: 100%;
+        padding-top: 10px;
+        font-weight: bold;
+    }
+
+    .form-item-h {
+        color: #3041d9;
+        font-weight: bold;
+        width: 25%;
+        text-align: end;
+        padding-right: 0;
+    }
+
+    .form-item-t {
+        color: #4e586e;
+        width: 75%;
+        text-align: start;
+        padding-left: 1vh;
+    }
+
+</style>
+
+<div class="container body-content" style="text-align:-webkit-center;">
+    <div class="form-tr">
+        <div>
+            <div class="form-head">
+                <h3 class="form-title"> Translation  ref: ayhbjyuad</h3>
+            </div>
+
+            <div class="form-body">
+                <div class="form-group row">
+                    <div class="row form-col" style="margin-top:3vh">
+                        <h5 class="column form-item-h"> Source Language:</h5>
+                        <h5 class="column form-item-t"> {{ source_language_text }}</h5>
+                    </div>
+
+                </div>
+                <div class="form-group row">
+                    <div class="row form-col">
+                        <h5 class="column form-item-h"> Target Language:</h5>
+                        <h5 class="column form-item-t"> {{ target_language_text }}</h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row form-col">
+                        <h5 class="column form-item-h"> Date Requested:</h5>
+                        <h5 class="column form-item-t"> {{ date }} </h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row form-col">
+                        <h5 class="column form-item-h"> Status:</h5>
+                        <h5 class="column form-item-t"> {{ status }} </h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row form-col">
+                        <h5 class="column form-item-h"> Text: </h5>
+                        <h5 class="column form-item-t"> {{ text }} </h5>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="row form-col">
+                        <h5 class="column form-item-h"> Tanslated Text: </h5>
+                        <h5 class="column form-item-t"> {{ translated_text }} </h5>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

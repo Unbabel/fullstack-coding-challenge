@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <script src="../static/scripts/jquery-1.10.2.js"></script>
+    <script src="../static/scripts/jquery-1.10.2.min.js"></script>
+    <script src="../static/scripts/main.js"></script>
+    {{ toastr.include_jquery() }}
+    {{ toastr.include_toastr_css() }}
+    {{ toastr.message() }}
+</head>
+
+<style>
+
+    .body {
+        background-color: #f1f1f1;
+    }
+
+    a:hover {
+        text-decoration: underline !important;
+    }
+
+    .dropdown > button:hover {
+        background-color: #3843D0 !important;
+    }
+
+    .navbar-new {
+        background: #3843D0 !important;
+    }
+
+    .trsicon {
+        margin-top: 12vh;
+        margin-left: 2vh;
+    }
+
+    .trsbox {
+        min-width: 80%;
+        min-height: 30vh;
+        /*box-shadow: 2px 5px 19px #808080;*/
+        font-size: 16px;
+        border: #3843D0;
+        border-style: dashed;
+        border-width: 2px;
+        background-color: #fcfcfc;
+    }
+
+    .trsbttn {
+        width: 100%;
+        background-color: #3843D0;
+        border: transparent;
+        position:absolute;
+        bottom:1px;
+    }
+
+    .trsfrm {
+        padding-bottom: 6vh;
+    }
+
+    .navtitle {
+        float: left !important;
+        font-size: 17px;
+        color: white !important;
+        font-weight: 700;
+    }
+
+    .navpagesa {
+        font-size: large;
+        color: white !important;
+        font-weight: 700;
+        margin-top: -1vh;
+    }
+
+    navpagesa:hover {
+        text-decoration: underline !important;
+    }
+
+    .navpagesul {
+        float: right;
+        flex-direction: row;
+    }
+
+    .navadj {
+        border-color: transparent;
+        box-shadow: -1px 5px 19px #808080;
+        margin-top: -1vh !important;
+        padding-bottom: 1vh !important;
+    }
+
+    .column {
+        padding-left: 0px;
+        padding-right: 2vh;
+    }
+
+    .row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+
+    .dropdown {
+        padding-top: 5vh;
+        width: 45% !important;
+    }
+
+    .dropdown-btn {
+        width: 100%;
+        background-color: transparent;
+        color: black;
+        border: #3843D0;
+        border-style: dashed;
+        border-width: 1px;
+    }
+
+    .dropdown-btn:hover {
+        background-color: #3843D0 !important;
+    }
+
+    #footer {
+        position: absolute;
+        bottom: 0;
+        height: 2.5rem;
+    }
+
+    .table-head {
+        background-color: #3843D0;
+        color: white;
+        text-align: -webkit-center;
+    }
+
+    .table-row {
+        text-align: -webkit-center;
+    }
+</style>
+<body class="body">
+    {{ toastr.include_toastr_js() }}
+    <div class="navbar navbar-inverse navbar-fixed-top navbar-new navadj">
+        <div class="container-fluid row">
+            <div class="column" style="width:50%;">
+                <a class="navtitle column" href="{{ url_for('translate') }}">
+                    <img src="../static/assets/unbabel_logo.png" width="50px" height="50px" style="float: left;">
+                </a>
+                <a class="navtitle column" href="{{ url_for('translate') }}" style="margin-top: 2vh;">
+                    <h3 class="navtitle">
+                        Unbabel Fullstack Challenge
+                    </h3>
+                </a>
+            </div>
+            {% if not loggedIn %}
+            <div class="column" style="width: 50%;">
+                <ul class="nav navbar-nav navpagesul">
+                    <li><a class="navpagesa" href="{{ url_for('login')}}">Login</a></li>
+            <li><a class="navpagesa" href="{{ url_for('register') }}">Sign up</a></li>
+            </ul>
+            </div>
+
+            {% else %}
+            <div class="column" style="width: 50%;">
+                <ul class="nav navbar-nav navpagesul">
+                    <li><a class="navpagesa" href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <!--<div class="container-fluid row">
+        <div class="navbar-header column">
+            <a class="navbar-brand navtitle" href="#">
+                <img src="../static/assets/unbabel_logo.png" width="50px" height="50px">
+                Fullstack-challenge
+            </a>
+        </div>
+        <div class="navbar-collapse collapse column">
+            <ul class="nav navbar-nav navpagesul">
+                <li><a class="navpagesa" href="{{ url_for('login') }}">Login</a></li>
+                <li><a class="navpagesa" href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </div>
+    </div>-->
+
+    <div class="container body-content">
+        <div style="min-height: calc(100vh - 95px);">
+            {% block content %}{% endblock %}
+        </div>
+        <footer id="footer" style="position:relative !important">
+            <hr />
+            <p>&copy; {{ year }} - Unbabel Fullstack Challenge - David Silva</p>
+        </footer>
+    </div>
+
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/bootstrap.js"></script>
+    <script src="/static/scripts/respond.js"></script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
+
+<!--<div class="navbar navbar-inverse navbar-fixed-top navbar-new navadj">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand navtitle" href="#">
+                <img src="../static/assets/unbabel_logo.png" width="50px" height="50px">
+                Fullstack-challenge
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navpagesul">
+                <li><a class="navpagesa" href="{{ url_for('login') }}">Login</a></li>
+                <li><a class="navpagesa" href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </div>
+    </div>
+</div>-->
