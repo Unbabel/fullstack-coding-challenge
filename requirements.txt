@@ -1,1 +1,5 @@
-Flask<1
+Flask==1.0.2
+Flask_SQLAlchemy==2.4.0
+requests==2.21.0
+Flask_Toastr==0.5.2
+urllib3==1.24.1
