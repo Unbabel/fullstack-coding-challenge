@@ -1,1 +1,1 @@
-web: sh -c 'cd ./UnbabelChallenge/ && python __init__.py'
+web: gunicorn --chdir UnbabelChallenge __init__:app
