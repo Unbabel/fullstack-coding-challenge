@@ -10,7 +10,7 @@ from UnbabelChallenge.Exceptions import UnExc
 
 API_USERNAME = 'fullstack-challenge'
 API_KEY = '9db71b322d43a6ac0f681784ebdcc6409bb83359'
-WEB_HOST = 'http://baecun.pythonanywhere.com/'
+WEB_HOST = 'https://unbabel-fs-challenge.herokuapp.com/'
 
 
 def language_pair(source_language, target_language):
