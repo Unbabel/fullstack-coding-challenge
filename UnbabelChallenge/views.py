@@ -1,5 +1,19 @@
 """
-Routes and views for the flask application.
+All the views and routes configurations
+
+Currently, 4 views exist:
+1. **Login** - The root directory for a user that hasn't logged in
+2. **Register** - Simple registration page
+3. **Translate** - The main view, where the user can request new translations,
+and see brief information about previous requests
+4. **Translation** - Detailed view for a specific translation
+
+Other than these, there are 4 additional routes that pose as helper
+methods:
+'/auth'
+'/add-new-translation'
+'/register-new-user'
+'/logout'
 """
 
 from datetime import datetime
@@ -18,6 +32,7 @@ import os
 toastr = Toastr()
 toastr.init_app(app)
 
+# Create a unique identifier for the translation that then gets used as its callback_url
 def create_calback_url(stringLength=10):
     translation_urls = db_connection.get_translation_urls(authentication_service.current_user_id)
 
@@ -29,24 +44,32 @@ def create_calback_url(stringLength=10):
     else:
         return tmp_url
 
-@app.route('/add-translation', methods = ['GET', 'POST'])
+
+# Performs the process of adding a new translation. 
+# Doesn't return its own view.
+@app.route('/add-translation', methods = ['POST'])
 def add_translation():
     if not authentication_service.logged_in:
         return redirect('/login')
 
-    #break down received data
+    # Break down received data
     txt = request.form['text']
-    ol = request.form['sourceLanguage']
-    tl = request.form['targetLanguage']
+    original_language = request.form['sourceLanguage']
+    target_language = request.form['targetLanguage']
     uid = authentication_service.current_user_id
     
     try:
         cburl = create_calback_url(10)
 
-        result = translation_service.request_translation(ol, tl, txt, identifier=cburl)
+        result = translation_service.request_translation(original_language, target_language, txt, identifier=cburl)
 
         if result is not UnExc:
-            db_connection.add_translation(text=txt, original_language=ol, target_language=tl, user_id=uid, status=result['status'], callback_url=cburl)
+            db_connection.add_translation(text=txt, 
+                                          original_language=original_language, 
+                                          target_language=target_language, 
+                                          user_id=uid, status=result['status'], 
+                                          callback_url=cburl)
+
             return redirect('translate#success')
         else:
             return result
@@ -58,8 +81,6 @@ def add_translation():
 @app.route('/')
 @app.route('/login')
 def login():    
-    #db_connection.destroy_create()
-    #db_connection.seed()
     return render_template(
         'login.html',
         loggedIn=authentication_service.logged_in,
@@ -79,10 +100,12 @@ def translate():
     data_source_languages = []
     data_target_languages = []
 
+    MAX_CHARS = 400
 
-    for language in data:
-        tmpSource = db_connection.get_language(language.source_language_id).short_name
-        tmpTarget = db_connection.get_language(language.target_language_id).short_name
+    for translation in data:
+        translation.text = (translation.text[:MAX_CHARS] + ' (...)') if len(translation.text) > MAX_CHARS else translation.text
+        tmpSource = db_connection.get_language(translation.source_language_id).short_name
+        tmpTarget = db_connection.get_language(translation.target_language_id).short_name
         data_source_languages.append(tmpSource)
         data_target_languages.append(tmpTarget)
 

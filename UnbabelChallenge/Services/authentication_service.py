@@ -1,3 +1,15 @@
+"""
+Responsible for encrypting the passwords of new users, and 
+comparing the provided passwords with stored passwords on login.
+
+Also responsible for keeping track of wether the user is logged
+in or not, and what is their corresponding user_id
+
+Stored password structure = [PASSWORD_HASH][SALT]
+  First 64 bytes = password hash
+  Last 64 bytes = password salt
+"""
+
 import hashlib, binascii, os
  
 logged_in = False

@@ -168,7 +168,12 @@ navpagesa:hover {
 
 .centeredth {
     vertical-align: middle !important;
+    max-width: 500px !important;
+    min-width: 80px !important;
 }
+    .centeredth > th {
+        max-width: 500px !important;
+    }
 
     .centeredth > i {
         font-size: 16px;
