@@ -3,7 +3,7 @@ import json
 
 from flask import Blueprint, request
 from unbabel.api import Unbabel
-from unbabel.models import Translation, db
+from unbabel.models import Translation, TranslationSchema, db
 
 bp = Blueprint("translations", __name__, url_prefix="/translations")
 unbabel = Unbabel()
@@ -35,3 +35,11 @@ def add_translation():
     db.session.commit()
 
     return json_response(translation)
+
+
+@bp.route("/", methods=("GET", ))
+def get_translations():
+    translation_schema = TranslationSchema()
+    translations = [translation_schema.dump(
+        translation) for translation in Translation.query.all()]
+    return json_response(translations)

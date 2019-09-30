@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+from marshmallow_sqlalchemy import ModelSchema
 
 db = SQLAlchemy()
 
@@ -23,3 +24,8 @@ class Translation(db.Model):
 
     def __repr__(self):
         return f"<Translation {self.uid}>"
+
+
+class TranslationSchema(ModelSchema):
+    class Meta:
+        model = Translation
