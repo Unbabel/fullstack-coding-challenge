@@ -30,4 +30,7 @@ def create_app(development=True):
     def hello():
         return "Hello, World!"
 
+    from . import translations
+    app.register_blueprint(translations.bp)
+
     return app
