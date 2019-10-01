@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LanguageBar from './language-bar/LanguageBar';
+import TranslatorText from './translator-text/TranslatorText';
 
 const Translator = () => {
   const [sourceLanguage, setSourceLanguage] = useState('en');
@@ -18,6 +19,7 @@ const Translator = () => {
         targetLanguage={targetLanguage}
         onClick={swapLanguage}
       ></LanguageBar>
+      <TranslatorText></TranslatorText>
     </div>
   );
 };
