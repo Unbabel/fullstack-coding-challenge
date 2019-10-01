@@ -2,4 +2,20 @@
 
 @tailwind components;
 
+.badge {
+  @apply inline-block text-xs px-2 rounded-full font-semibold;
+}
+
+.badge-success {
+  @apply bg-teal-200 text-teal-800;
+}
+
+.badge-danger {
+  @apply bg-red-200 text-red-800;
+}
+
+.badge-pending {
+  @apply bg-orange-200 text-orange-800;
+}
+
 @tailwind utilities;

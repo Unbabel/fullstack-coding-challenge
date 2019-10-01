@@ -631,6 +631,30 @@ video {
   }
 }
 
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+}
+
+.badge-success {
+  background-color: #b2f5ea;
+  color: #285e61;
+}
+
+.badge-danger {
+  background-color: #fed7d7;
+  color: #9b2c2c;
+}
+
+.badge-pending {
+  background-color: #feebc8;
+  color: #9c4221;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
