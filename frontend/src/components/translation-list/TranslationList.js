@@ -14,13 +14,13 @@ const statusMapper = {
 const TranslationList = props => {
   const translations = props.translations.map((translation, index) => (
     <Translation
-      key={index}
+      key={translation.uid}
       status={translation.status}
-      badgeClass={statusMapper[translation.badgeClass]}
-      originalText={translation.originalText}
-      translatedText={translation.translatedText}
-      sourceLanguage={translation.sourceLanguage}
-      targetLanguage={translation.targetLanguage}
+      badgeClass={statusMapper[translation.status]}
+      originalText={translation.text}
+      translatedText={translation.translated_text}
+      sourceLanguage={translation.source_language}
+      targetLanguage={translation.target_language}
     ></Translation>
   ));
 

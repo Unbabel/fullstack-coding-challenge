@@ -1,72 +1,14 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import TranslationList from '../translation-list/TranslationList';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslatorText from './translator-text/TranslatorText';
-
-const translations = [
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'new',
-    badgeClass: 'new',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'translating',
-    badgeClass: 'translating',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'completed',
-    badgeClass: 'completed',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'failed',
-    badgeClass: 'failed',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'canceled',
-    badgeClass: 'canceled',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'accepted',
-    badgeClass: 'accepted',
-  },
-  {
-    sourceLanguage: 'English',
-    targetLanguage: 'Spanish',
-    originalText: 'Original text...',
-    translatedText: 'Translated text...',
-    status: 'rejected',
-    badgeClass: 'rejected',
-  },
-];
 
 const Translator = () => {
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('es');
   const [translationText, setTranslationText] = useState('');
-  const [translationList, setTranslationList] = useState(translations);
+  const [translationList, setTranslationList] = useState([]);
 
   const swapLanguage = () => {
     const source = sourceLanguage;
@@ -79,19 +21,17 @@ const Translator = () => {
     setTranslationText(event.target.value);
   };
 
-  const handleTextSubmit = event => {
+  const handleTextSubmit = async event => {
     event.preventDefault();
     if (!translationText) {
       return;
     }
-    const newTranslation = {
-      originalText: translationText,
-      translatedText: '...',
-      status: 'new',
-      badgeClass: 'new',
-      sourceLanguage,
-      targetLanguage,
-    };
+    const response = await axios.post('/translations/', {
+      text: translationText,
+      source_language: sourceLanguage,
+      target_language: targetLanguage,
+    });
+    const newTranslation = response.data;
 
     setTranslationText('');
     setTranslationList(oldList => [newTranslation, ...oldList]);
@@ -111,6 +51,23 @@ const Translator = () => {
     }
     setTranslationText('');
   };
+
+  useEffect(() => {
+    let didCancel = false;
+
+    async function fetchTranslations() {
+      const response = await axios.get('/translations/');
+      if (!didCancel) {
+        // Ignore if we started fetching something else
+        setTranslationList(response.data);
+      }
+    }
+
+    fetchTranslations();
+    return () => {
+      didCancel = true;
+    };
+  }, []);
 
   return (
     <React.Fragment>
