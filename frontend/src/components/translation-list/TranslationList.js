@@ -12,8 +12,9 @@ const statusMapper = {
 };
 
 const TranslationList = props => {
-  const translations = props.translations.map(translation => (
+  const translations = props.translations.map((translation, index) => (
     <Translation
+      key={index}
       status={translation.status}
       badgeClass={statusMapper[translation.badgeClass]}
       originalText={translation.originalText}

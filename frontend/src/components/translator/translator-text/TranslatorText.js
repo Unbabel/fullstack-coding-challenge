@@ -2,7 +2,13 @@ import React from 'react';
 
 const TranslatorText = props => (
   <div className="shadow bg-white flex px-4 py-3 h-32">
-    <form className="flex w-full" onSubmit={props.handleSubmit}>
+    <form
+      className="flex w-full"
+      onSubmit={props.handleSubmit}
+      onKeyDown={event => {
+        props.handleKeyDown(event);
+      }}
+    >
       <textarea
         placeholder="Translate..."
         className="text-gray-800 text-xl flex-1 p-2 m-1 bg-transparent resize-none max-h-full focus:outline-none"

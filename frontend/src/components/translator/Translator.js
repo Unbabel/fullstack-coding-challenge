@@ -94,7 +94,14 @@ const Translator = () => {
     };
 
     setTranslationText('');
-    setTranslationList(oldList => [...oldList, newTranslation]);
+    setTranslationList(oldList => [newTranslation, ...oldList]);
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter' && event.shiftKey === false) {
+      event.preventDefault();
+      handleTextSubmit(event);
+    }
   };
 
   const handleTextClear = event => {
@@ -118,6 +125,7 @@ const Translator = () => {
           handleChange={handleTextChange}
           handleSubmit={handleTextSubmit}
           handleClear={handleTextClear}
+          handleKeyDown={handleKeyDown}
         ></TranslatorText>
       </div>
       <div>
