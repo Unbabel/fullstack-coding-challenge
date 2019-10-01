@@ -1,6 +1,7 @@
 import os
 
 from flask import Flask
+from flask_cors import CORS
 from flask_migrate import Migrate
 from unbabel.config import DevelopmentConfig, ProductionConfig
 from unbabel.models import db
@@ -10,6 +11,7 @@ migrate = Migrate()
 
 def create_app(development=True):
     app = Flask(__name__, instance_relative_config=True)
+    CORS(app)
     app.config.from_object(ProductionConfig())
 
     if development:
