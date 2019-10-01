@@ -1,11 +1,11 @@
 import React from 'react';
 import Header from '../header/Header';
-import LanguageSelector from '../language-bar/LanguageBar';
+import Translator from '../translator/Translator';
 
 const app = () => (
   <div className="App">
     <Header></Header>
-    <LanguageSelector></LanguageSelector>
+    <Translator></Translator>
   </div>
 );
 

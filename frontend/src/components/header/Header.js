@@ -1,6 +1,6 @@
 import React from 'react';
 
-const header = () => (
+const Header = () => (
   <header className="bg-indigo-600 flex items-center justify-between px-4 py-3">
     <div>
       <button type="button" className="block text-gray-100">
@@ -19,4 +19,4 @@ const header = () => (
   </header>
 );
 
-export default header;
+export default Header;
