@@ -1,7 +1,11 @@
 import React from 'react';
 
 const SwapLanguageButton = props => (
-  <button onClick={props.onClick} type="button" className="block text-gray-600">
+  <button
+    onClick={props.onClick}
+    type="button"
+    className="block text-gray-600 flex justify-center items-center hover:text-gray-700 focus:outline-none"
+  >
     <svg className="h-6 w-6 fill-current">
       <defs>
         <path id="a" d="M0 0h24v24H0V0z" />
