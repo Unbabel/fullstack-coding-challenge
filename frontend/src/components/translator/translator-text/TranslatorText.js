@@ -1,7 +1,7 @@
 import React from 'react';
 
 const TranslatorText = props => (
-  <div className="shadow flex px-4 py-3 h-32">
+  <div className="shadow bg-white flex px-4 py-3 h-32">
     <form className="flex w-full" onSubmit={props.handleSubmit}>
       <textarea
         placeholder="Translate..."

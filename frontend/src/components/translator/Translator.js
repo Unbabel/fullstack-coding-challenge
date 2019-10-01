@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TranslationList from '../translation-list/TranslationList';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslatorText from './translator-text/TranslatorText';
 
@@ -35,19 +36,24 @@ const Translator = () => {
   };
 
   return (
-    <div>
-      <LanguageBar
-        sourceLanguage={sourceLanguage}
-        targetLanguage={targetLanguage}
-        onClick={swapLanguage}
-      ></LanguageBar>
-      <TranslatorText
-        translationText={translationText}
-        handleChange={handleTextChange}
-        handleSubmit={handleTextSubmit}
-        handleClear={handleTextClear}
-      ></TranslatorText>
-    </div>
+    <React.Fragment>
+      <div>
+        <LanguageBar
+          sourceLanguage={sourceLanguage}
+          targetLanguage={targetLanguage}
+          onClick={swapLanguage}
+        ></LanguageBar>
+        <TranslatorText
+          translationText={translationText}
+          handleChange={handleTextChange}
+          handleSubmit={handleTextSubmit}
+          handleClear={handleTextClear}
+        ></TranslatorText>
+      </div>
+      <div>
+        <TranslationList></TranslationList>
+      </div>
+    </React.Fragment>
   );
 };
 
