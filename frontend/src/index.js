@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 
 axios.defaults.baseURL = 'http://localhost:5000';
 axios.defaults.headers.post['Content-Type'] = 'application/json';
-axios.interceptors.request.use(request => request);
 
 ReactDOM.render(<App />, document.getElementById('root'));
 

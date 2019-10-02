@@ -1,4 +1,5 @@
 import React from 'react';
+import logo from '../../assets/images/unbabel-logo.svg';
 
 const Header = () => (
   <header className="bg-indigo-600 flex items-center justify-between px-4 py-3">
@@ -18,7 +19,7 @@ const Header = () => (
       </button>
     </div>
     <div>
-      <img className="h-8" src="/" alt="Unbabel"></img>
+      <img className="h-6" src={logo} alt="Unbabel"></img>
     </div>
   </header>
 );
