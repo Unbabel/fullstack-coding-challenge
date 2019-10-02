@@ -23,7 +23,10 @@ class Translation(db.Model):
                            default=db.func.current_timestamp())
 
     def __repr__(self):
-        return f"<Translation {self.uid}>"
+        return (f'<Translation uid="{self.uid}"'
+                f' status="{self.status}"'
+                f' text="{self.text}"'
+                f' translated_text="{self.translated_text}">')
 
 
 class TranslationSchema(ModelSchema):
