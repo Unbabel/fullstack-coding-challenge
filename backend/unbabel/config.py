@@ -8,6 +8,15 @@ class Config(object):
     TESTING = False
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URI"]
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    JOBS = [
+        {
+            "id": "update_translations",
+            "func": "unbabel.utilities:update_translations",
+            "trigger": "interval",
+            "seconds": 10
+        }
+    ]
+    SCHEDULER_API_ENABLED = True
 
 
 class ProductionConfig(Config):

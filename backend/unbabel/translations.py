@@ -1,4 +1,3 @@
-import functools
 import json
 
 from flask import Blueprint, request
@@ -10,7 +9,7 @@ unbabel = Unbabel()
 
 
 def json_response(payload, status=200):
-    return (json.dumps(payload), status, {"Content-Type": "application/json"})
+    return json.dumps(payload), status, {"Content-Type": "application/json"}
 
 
 @bp.route("/", methods=("POST", ))
