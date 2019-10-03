@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flipped } from 'react-flip-toolkit';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { shortnameToName } from '../../utils';
+import { shortnameToName } from '../../../utils';
 
 const statusMapper = {
   new: 'badge-new',

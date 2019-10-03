@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Flipper } from 'react-flip-toolkit';
 import { sortByTranslatedText } from '../../utils';
-import TranslationList from '../translation-list/TranslationList';
 import LanguageBar from './language-bar/LanguageBar';
+import TranslationList from './translation-list/TranslationList';
 import TranslatorText from './translator-text/TranslatorText';
 
 const eventSource = new EventSource(
