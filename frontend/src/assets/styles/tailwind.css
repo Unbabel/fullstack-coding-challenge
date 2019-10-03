@@ -645,6 +645,11 @@ video {
   color: #285e61;
 }
 
+.badge-new {
+  background-color: #c6f6d5;
+  color: #276749;
+}
+
 .badge-danger {
   background-color: #fed7d7;
   color: #9b2c2c;

@@ -11,6 +11,7 @@ const eventSource = new EventSource(
 );
 
 const Translator = () => {
+  const [loading, setLoading] = useState(false);
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('es');
   const [translationText, setTranslationText] = useState('');
@@ -32,6 +33,7 @@ const Translator = () => {
     if (!translationText) {
       return;
     }
+    setLoading(true);
     setTranslationText('');
 
     const response = await axios.post('/translations/', {
@@ -44,6 +46,7 @@ const Translator = () => {
     setTranslationList(oldList =>
       [newTranslation, ...oldList].sort(sortByTranslatedText)
     );
+    setLoading(false);
   };
 
   const handleKeyDown = event => {
@@ -108,6 +111,7 @@ const Translator = () => {
           handleSubmit={handleTextSubmit}
           handleClear={handleTextClear}
           handleKeyDown={handleKeyDown}
+          loading={loading}
         ></TranslatorText>
       </div>
       <div>

@@ -1,9 +1,10 @@
 import React from 'react';
 import { Flipped } from 'react-flip-toolkit';
+import PulseLoader from 'react-spinners/PulseLoader';
 import { shortnameToName } from '../../utils';
 
 const statusMapper = {
-  new: 'badge-pending',
+  new: 'badge-new',
   translating: 'badge-pending',
   canceled: 'badge-danger',
   failed: 'badge-danger',
@@ -13,9 +14,11 @@ const statusMapper = {
 };
 
 const Translation = ({ translation }) => {
-  const translatedText = translation.translated_text
-    ? translation.translated_text
-    : 'Translating...';
+  const translatedText = translation.translated_text ? (
+    translation.translated_text
+  ) : (
+    <PulseLoader sizeUnit="px" size={5} color="#5a67d8" loading />
+  );
   return (
     <Flipped flipId={translation.uid}>
       <div className="px-4 py-3 flex flex-col bg-white hover:bg-gray-100 border border-l-0 border-r-0 border-t-0">

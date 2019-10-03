@@ -9,7 +9,8 @@
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-flip-toolkit": "^7.0.6",
-    "react-scripts": "3.1.2"
+    "react-scripts": "3.1.2",
+    "react-spinners": "^0.6.1"
   },
   "scripts": {
     "build:style": "tailwind build src/assets/styles/index.css -o src/assets/styles/tailwind.css",

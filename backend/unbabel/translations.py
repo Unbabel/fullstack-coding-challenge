@@ -15,7 +15,7 @@ def json_response(payload, status=200):
 
 @bp.route("/", methods=("POST", ))
 def add_translation():
-    text = request.json["text"]
+    text = request.json["text"].strip()
     source_language = request.json["source_language"]
     target_language = request.json["target_language"]
 

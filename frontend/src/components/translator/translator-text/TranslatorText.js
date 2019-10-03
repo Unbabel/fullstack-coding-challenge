@@ -1,9 +1,10 @@
 import React from 'react';
+import BarLoader from 'react-spinners/BarLoader';
 
 const TranslatorText = props => (
-  <div className="shadow bg-white flex px-4 py-3 h-32">
+  <div className="shadow bg-white flex pt-3 h-32 flex flex-col">
     <form
-      className="flex w-full"
+      className="flex w-full h-full px-4"
       onSubmit={props.handleSubmit}
       onKeyDown={event => {
         props.handleKeyDown(event);
@@ -14,6 +15,7 @@ const TranslatorText = props => (
         className="text-gray-800 text-xl flex-1 p-2 m-1 bg-transparent resize-none max-h-full focus:outline-none"
         value={props.translationText}
         onChange={props.handleChange}
+        disabled={props.loading}
       ></textarea>
       <div className="ml-1 flex flex-col items-center justify-between">
         {props.translationText.length ? (
@@ -49,6 +51,13 @@ const TranslatorText = props => (
         ) : null}
       </div>
     </form>
+    <div className="w-full mt-3">
+      <BarLoader
+        color="#5a67d8"
+        css="width: 100%"
+        loading={props.loading}
+      ></BarLoader>
+    </div>
   </div>
 );
 
