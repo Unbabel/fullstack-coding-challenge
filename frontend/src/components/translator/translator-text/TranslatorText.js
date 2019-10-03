@@ -1,28 +1,33 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import BarLoader from 'react-spinners/BarLoader';
 
-const TranslatorText = props => (
+const TranslatorText = ({
+  handleChange,
+  handleClear,
+  handleKeyDown,
+  handleSubmit,
+  loading,
+  translationText,
+}) => (
   <div className="shadow bg-white flex pt-3 h-32 flex flex-col">
-    <form
-      className="flex w-full h-full px-4"
-      onSubmit={props.handleSubmit}
-      onKeyDown={event => {
-        props.handleKeyDown(event);
-      }}
-    >
+    <form className="flex w-full h-full px-4" onSubmit={handleSubmit}>
       <textarea
         placeholder="Translate..."
         className="text-gray-800 text-xl flex-1 p-2 m-1 bg-transparent resize-none max-h-full focus:outline-none"
-        value={props.translationText}
-        onChange={props.handleChange}
-        disabled={props.loading}
+        value={translationText}
+        onChange={handleChange}
+        disabled={loading}
+        onKeyDown={event => {
+          handleKeyDown(event);
+        }}
       ></textarea>
       <div className="ml-1 flex flex-col items-center justify-between">
-        {props.translationText.length ? (
+        {translationText.length ? (
           <button
             type="button"
             className="block text-gray-500 hover:text-gray-600 focus:outline-none"
-            onClick={props.handleClear}
+            onClick={handleClear}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -34,7 +39,7 @@ const TranslatorText = props => (
             </svg>
           </button>
         ) : null}
-        {props.translationText.length ? (
+        {translationText.length ? (
           <button
             type="submit"
             className="block text-gray-500 hover:text-gray-600 focus:outline-none"
@@ -55,10 +60,19 @@ const TranslatorText = props => (
       <BarLoader
         color="#5a67d8"
         css="width: 100%"
-        loading={props.loading}
+        loading={loading}
       ></BarLoader>
     </div>
   </div>
 );
+
+TranslatorText.propTypes = {
+  handleChange: PropTypes.func,
+  handleClear: PropTypes.func,
+  handleKeyDown: PropTypes.func,
+  handleSubmit: PropTypes.func,
+  loading: PropTypes.bool,
+  translationText: PropTypes.string,
+};
 
 export default TranslatorText;

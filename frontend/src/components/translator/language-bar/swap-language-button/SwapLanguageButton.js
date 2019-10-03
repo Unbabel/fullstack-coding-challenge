@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const SwapLanguageButton = props => (
+const SwapLanguageButton = ({ onClick }) => (
   <button
-    onClick={props.onClick}
+    onClick={onClick}
     type="button"
     className="block text-gray-600 flex justify-center items-center hover:text-gray-700 focus:outline-none"
   >
@@ -20,5 +21,9 @@ const SwapLanguageButton = props => (
     </svg>
   </button>
 );
+
+SwapLanguageButton.propTypes = {
+  onClick: PropTypes.func,
+};
 
 export default SwapLanguageButton;

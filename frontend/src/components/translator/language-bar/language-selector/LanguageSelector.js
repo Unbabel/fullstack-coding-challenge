@@ -1,9 +1,14 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const LanguageSelector = props => (
+const LanguageSelector = ({ children }) => (
   <div className="text-indigo-500 flex text-center items-center justify-center w-1/2 uppercase font-medium tracking-normal truncate">
-    {props.children}
+    {children}
   </div>
 );
+
+LanguageSelector.propTypes = {
+  children: PropTypes.string,
+};
 
 export default LanguageSelector;

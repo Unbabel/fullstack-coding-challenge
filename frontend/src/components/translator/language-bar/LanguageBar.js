@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import LanguageSelector from './language-selector/LanguageSelector';
 import SwapLanguageButton from './swap-language-button/SwapLanguageButton';
@@ -7,12 +8,18 @@ const languageMap = {
   en: 'english',
 };
 
-const LanguageBar = props => (
+const LanguageBar = ({ onClick, sourceLanguage, targetLanguage }) => (
   <div className="flex bg-indigo-100 justify-between items-center py-3">
-    <LanguageSelector>{languageMap[props.sourceLanguage]}</LanguageSelector>
-    <SwapLanguageButton onClick={props.onClick}></SwapLanguageButton>
-    <LanguageSelector>{languageMap[props.targetLanguage]}</LanguageSelector>
+    <LanguageSelector>{languageMap[sourceLanguage]}</LanguageSelector>
+    <SwapLanguageButton onClick={onClick}></SwapLanguageButton>
+    <LanguageSelector>{languageMap[targetLanguage]}</LanguageSelector>
   </div>
 );
+
+LanguageBar.propTypes = {
+  onClick: PropTypes.func,
+  sourceLanguage: PropTypes.string,
+  targetLanguage: PropTypes.string,
+};
 
 export default LanguageBar;

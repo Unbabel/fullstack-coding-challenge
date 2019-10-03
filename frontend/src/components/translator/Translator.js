@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Flipper } from 'react-flip-toolkit';
-import { sortByTranslatedText } from '../../utils';
+import { sortByTranslatedText } from '../../utilities';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslationList from './translation-list/TranslationList';
 import TranslatorText from './translator-text/TranslatorText';

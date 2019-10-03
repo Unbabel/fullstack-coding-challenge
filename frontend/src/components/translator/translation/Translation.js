@@ -1,7 +1,8 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { Flipped } from 'react-flip-toolkit';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { shortnameToName } from '../../../utils';
+import { shortnameToName } from '../../../utilities';
 
 const statusMapper = {
   new: 'badge-new',
@@ -38,6 +39,10 @@ const Translation = ({ translation }) => {
       </div>
     </Flipped>
   );
+};
+
+Translation.propTypes = {
+  translation: PropTypes.object,
 };
 
 export default Translation;
