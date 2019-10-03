@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Flipper } from 'react-flip-toolkit';
+import { sortByTranslatedText } from '../../utils';
 import TranslationList from '../translation-list/TranslationList';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslatorText from './translator-text/TranslatorText';
@@ -39,7 +41,9 @@ const Translator = () => {
     });
     const newTranslation = response.data;
 
-    setTranslationList(oldList => [newTranslation, ...oldList]);
+    setTranslationList(oldList =>
+      [newTranslation, ...oldList].sort(sortByTranslatedText)
+    );
   };
 
   const handleKeyDown = event => {
@@ -66,7 +70,7 @@ const Translator = () => {
         );
         currentTranslations[translationIndex] = updatedTranslation;
       });
-      setTranslationList(currentTranslations);
+      setTranslationList([...currentTranslations].sort(sortByTranslatedText));
     };
     eventSource.onmessage = event => {
       upsertTranslations(JSON.parse(event.data));
@@ -80,9 +84,10 @@ const Translator = () => {
       const response = await axios.get('/translations/');
       if (!didCancel) {
         // Ignore if we started fetching something else
-        setTranslationList(response.data);
+        setTranslationList(response.data.sort(sortByTranslatedText));
       }
     }
+
     fetchTranslations();
     return () => {
       didCancel = true;
@@ -106,7 +111,11 @@ const Translator = () => {
         ></TranslatorText>
       </div>
       <div>
-        <TranslationList translations={translationList}></TranslationList>
+        <Flipper
+          flipKey={translationList.map(translation => translation.uid).join('')}
+        >
+          <TranslationList translations={translationList}></TranslationList>
+        </Flipper>
       </div>
     </React.Fragment>
   );
