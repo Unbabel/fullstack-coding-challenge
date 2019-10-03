@@ -4,6 +4,10 @@ import TranslationList from '../translation-list/TranslationList';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslatorText from './translator-text/TranslatorText';
 
+const eventSource = new EventSource(
+  'http://localhost:5000/translations/stream'
+);
+
 const Translator = () => {
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('es');
@@ -26,6 +30,8 @@ const Translator = () => {
     if (!translationText) {
       return;
     }
+    setTranslationText('');
+
     const response = await axios.post('/translations/', {
       text: translationText,
       source_language: sourceLanguage,
@@ -33,7 +39,6 @@ const Translator = () => {
     });
     const newTranslation = response.data;
 
-    setTranslationText('');
     setTranslationList(oldList => [newTranslation, ...oldList]);
   };
 
@@ -53,6 +58,22 @@ const Translator = () => {
   };
 
   useEffect(() => {
+    const upsertTranslations = updatedTranslations => {
+      const currentTranslations = [...translationList];
+      updatedTranslations.forEach(updatedTranslation => {
+        const translationIndex = currentTranslations.findIndex(
+          x => x.uid === updatedTranslation.uid
+        );
+        currentTranslations[translationIndex] = updatedTranslation;
+      });
+      setTranslationList(currentTranslations);
+    };
+    eventSource.onmessage = event => {
+      upsertTranslations(JSON.parse(event.data));
+    };
+  }, [translationList]);
+
+  useEffect(() => {
     let didCancel = false;
 
     async function fetchTranslations() {
@@ -62,7 +83,6 @@ const Translator = () => {
         setTranslationList(response.data);
       }
     }
-
     fetchTranslations();
     return () => {
       didCancel = true;

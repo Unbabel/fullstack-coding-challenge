@@ -7,7 +7,7 @@ const Translation = props => {
     : 'Translating...';
   return (
     <div className="px-4 py-3 flex flex-col bg-white hover:bg-gray-100 border border-l-0 border-r-0 border-t-0">
-      <div className="flex items-baseline justify-between">
+      <div className="flex items-baseline justify-between mb-1">
         <span className="text-gray-500 text-sm">
           {shortnameToName(props.sourceLanguage)} &rarr;{' '}
           {shortnameToName(props.targetLanguage)}
