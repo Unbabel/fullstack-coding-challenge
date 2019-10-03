@@ -10,7 +10,7 @@ class Translation(db.Model):
     __tablename__ = "translations"
 
     source_language = db.Column(db.String(), nullable=False)
-    status = db.Column(db.String(), nullable=False)
+    status = db.Column(db.String(), nullable=False, default="new")
     target_language = db.Column(db.String(), nullable=False)
     text = db.Column(db.String(), nullable=False)
     text_format = db.Column(db.String(), nullable=False)
