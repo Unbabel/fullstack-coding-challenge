@@ -22,6 +22,7 @@ const Translation = ({ translation, deleteTranslation, deleteLoading }) => {
   ) : (
     <PulseLoader sizeUnit="px" size={5} color="#5a67d8" loading />
   );
+
   return (
     <Flipped flipId={translation.uid}>
       <div
@@ -64,7 +65,7 @@ const Translation = ({ translation, deleteTranslation, deleteLoading }) => {
             type="button"
             onClick={() => deleteTranslation(translation.uid)}
             className={`transition block absolute right-0 px-3 py-2 bg-red-200 text-red-800 rounded -mt-4 mr-3 shadow-lg focus:outline-none hover:bg-red-300 active:shadow w-20 ${
-              showDelete ? 'opacity-100' : 'opacity-0'
+              showDelete || deleteLoading ? 'opacity-100' : 'opacity-0'
             }`}
           >
             {deleteLoading ? (

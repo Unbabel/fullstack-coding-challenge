@@ -17,6 +17,14 @@ const TranslationList = ({
       deleteLoading={deleteLoading}
     ></Translation>
   ));
+
+  const clearAll = () => {
+    translations.forEach(translation => {
+      console.log(translation.uid);
+      deleteTranslation(translation.uid);
+    });
+  };
+
   return (
     <React.Fragment>
       <div
@@ -38,6 +46,7 @@ const TranslationList = ({
         >
           <div>{allTranslations.length} translations</div>
           <button
+            onClick={clearAll}
             type="button"
             className="block transition text-gray-500 hover:text-gray-700 focus:outline-none"
           >

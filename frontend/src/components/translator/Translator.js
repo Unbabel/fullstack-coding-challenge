@@ -76,10 +76,9 @@ const Translator = () => {
     );
 
     if (response.data.message === 'success') {
-      const updatedTranslations = translationList.filter(
-        translation => translation.uid !== translationUid
+      setTranslationList(oldList =>
+        [...oldList].filter(translation => translation.uid !== translationUid)
       );
-      setTranslationList(updatedTranslations);
     } else {
       console.log('SOMETHING WENT WRONG!!!');
     }

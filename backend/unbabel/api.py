@@ -41,10 +41,3 @@ class Unbabel():
         if response.ok:
             return {"message": "success"}
         return {"message": "error"}
-
-    def delete_translations(self, uids):
-        responses = []
-        for uid in uids:
-            response = self.delete_translation(uid)
-            responses.append(response)
-        return responses.json()
