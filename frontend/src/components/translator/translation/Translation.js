@@ -14,7 +14,7 @@ const statusMapper = {
   completed: 'badge-success',
 };
 
-const Translation = ({ translation }) => {
+const Translation = ({ translation, deleteTranslation, deleteLoading }) => {
   const [showDelete, setShowDelete] = useState(false);
 
   const translatedText = translation.translated_text ? (
@@ -62,11 +62,16 @@ const Translation = ({ translation }) => {
           </div>
           <button
             type="button"
-            className={`transition block absolute right-0 px-3 py-2 bg-red-200 text-red-800 rounded -mt-4 mr-3 shadow-lg focus:outline-none hover:bg-red-300 active:shadow ${
+            onClick={() => deleteTranslation(translation.uid)}
+            className={`transition block absolute right-0 px-3 py-2 bg-red-200 text-red-800 rounded -mt-4 mr-3 shadow-lg focus:outline-none hover:bg-red-300 active:shadow w-20 ${
               showDelete ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            Delete
+            {deleteLoading ? (
+              <PulseLoader sizeUnit="px" size={5} color="#9b2c2c" loading />
+            ) : (
+              'Delete'
+            )}
           </button>
         </div>
       </div>
@@ -76,6 +81,8 @@ const Translation = ({ translation }) => {
 
 Translation.propTypes = {
   translation: PropTypes.object,
+  deleteTranslation: PropTypes.func,
+  deleteLoading: PropTypes.bool,
 };
 
 export default Translation;

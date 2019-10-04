@@ -59,12 +59,8 @@ const TranslatorText = ({
     <div className="flex text-sm text-gray-500 mt-3 mb-3 pr-4 justify-end">
       {translationText.length} / 5000
     </div>
-    <div className="w-full">
-      <BarLoader
-        color="#5a67d8"
-        css="width: 100%"
-        loading={loading}
-      ></BarLoader>
+    <div className={`w-full ${loading ? 'opacity-100' : 'opacity-0'}`}>
+      <BarLoader color="#5a67d8" css="width: 100%" loading></BarLoader>
     </div>
   </div>
 );

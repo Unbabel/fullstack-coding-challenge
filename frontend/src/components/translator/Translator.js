@@ -17,6 +17,7 @@ const Translator = () => {
   const [targetLanguage, setTargetLanguage] = useState('es');
   const [translationText, setTranslationText] = useState('');
   const [translationList, setTranslationList] = useState([]);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const swapLanguage = () => {
     const source = sourceLanguage;
@@ -66,6 +67,23 @@ const Translator = () => {
       return;
     }
     setTranslationText('');
+  };
+
+  const deleteTranslation = async translationUid => {
+    setDeleteLoading(true);
+    const response = await axios.delete(
+      `/translations/delete/${translationUid}`
+    );
+
+    if (response.data.message === 'success') {
+      const updatedTranslations = translationList.filter(
+        translation => translation.uid !== translationUid
+      );
+      setTranslationList(updatedTranslations);
+    } else {
+      console.log('SOMETHING WENT WRONG!!!');
+    }
+    setDeleteLoading(false);
   };
 
   useEffect(() => {
@@ -126,6 +144,8 @@ const Translator = () => {
           <TranslationList
             loading={loadingTranslations}
             translations={translationList}
+            deleteTranslation={deleteTranslation}
+            deleteLoading={deleteLoading}
           ></TranslationList>
         </Flipper>
       </div>

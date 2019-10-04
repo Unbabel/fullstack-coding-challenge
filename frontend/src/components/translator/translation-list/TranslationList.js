@@ -3,9 +3,19 @@ import React from 'react';
 import PulseLoader from 'react-spinners/PulseLoader';
 import Translation from '../translation/Translation';
 
-const TranslationList = ({ loading, translations }) => {
+const TranslationList = ({
+  loading,
+  translations,
+  deleteTranslation,
+  deleteLoading,
+}) => {
   const allTranslations = translations.map(translation => (
-    <Translation key={translation.uid} translation={translation}></Translation>
+    <Translation
+      key={translation.uid}
+      translation={translation}
+      deleteTranslation={deleteTranslation}
+      deleteLoading={deleteLoading}
+    ></Translation>
   ));
   return (
     <React.Fragment>
@@ -43,6 +53,8 @@ const TranslationList = ({ loading, translations }) => {
 TranslationList.propTypes = {
   translations: PropTypes.array,
   loading: PropTypes.bool,
+  deleteTranslation: PropTypes.func,
+  deleteLoading: PropTypes.bool,
 };
 
 export default TranslationList;
