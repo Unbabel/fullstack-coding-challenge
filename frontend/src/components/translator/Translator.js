@@ -11,7 +11,8 @@ const eventSource = new EventSource(
 );
 
 const Translator = () => {
-  const [loading, setLoading] = useState(false);
+  const [loadingTranslations, setLoadingTranslations] = useState(true);
+  const [loadingNewTranslation, setLoadingNewTranslation] = useState(false);
   const [sourceLanguage, setSourceLanguage] = useState('en');
   const [targetLanguage, setTargetLanguage] = useState('es');
   const [translationText, setTranslationText] = useState('');
@@ -25,6 +26,9 @@ const Translator = () => {
   };
 
   const handleTextChange = event => {
+    if (event.target.value.length > 5000) {
+      return;
+    }
     setTranslationText(event.target.value);
   };
 
@@ -33,8 +37,7 @@ const Translator = () => {
     if (!translationText) {
       return;
     }
-    setLoading(true);
-    setTranslationText('');
+    setLoadingNewTranslation(true);
 
     const response = await axios.post('/translations/', {
       text: translationText,
@@ -43,10 +46,11 @@ const Translator = () => {
     });
     const newTranslation = response.data;
 
+    setTranslationText('');
     setTranslationList(oldList =>
       [newTranslation, ...oldList].sort(sortByTranslatedText)
     );
-    setLoading(false);
+    setLoadingNewTranslation(false);
   };
 
   const handleKeyDown = event => {
@@ -92,6 +96,7 @@ const Translator = () => {
     }
 
     fetchTranslations();
+    setLoadingTranslations(false);
     return () => {
       didCancel = true;
     };
@@ -111,14 +116,17 @@ const Translator = () => {
           handleSubmit={handleTextSubmit}
           handleClear={handleTextClear}
           handleKeyDown={handleKeyDown}
-          loading={loading}
+          loading={loadingNewTranslation}
         ></TranslatorText>
       </div>
-      <div className="lg:max-w-3xl w-full lg:my-10 lg:rounded lg:overflow-hidden lg:shadow-xl">
+      <div className="lg:max-w-3xl w-full lg:my-10">
         <Flipper
           flipKey={translationList.map(translation => translation.uid).join('')}
         >
-          <TranslationList translations={translationList}></TranslationList>
+          <TranslationList
+            loading={loadingTranslations}
+            translations={translationList}
+          ></TranslationList>
         </Flipper>
       </div>
     </React.Fragment>

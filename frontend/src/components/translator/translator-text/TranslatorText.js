@@ -10,7 +10,7 @@ const TranslatorText = ({
   loading,
   translationText,
 }) => (
-  <div className="shadow bg-white flex pt-3 h-32 flex flex-col">
+  <div className="shadow bg-white flex pt-3 h-40 flex flex-col">
     <form className="flex w-full h-full px-4" onSubmit={handleSubmit}>
       <textarea
         placeholder="Translate..."
@@ -56,7 +56,10 @@ const TranslatorText = ({
         ) : null}
       </div>
     </form>
-    <div className="w-full mt-3">
+    <div className="flex text-sm text-gray-500 mt-3 mb-3 pr-4 justify-end">
+      {translationText.length} / 5000
+    </div>
+    <div className="w-full">
       <BarLoader
         color="#5a67d8"
         css="width: 100%"
