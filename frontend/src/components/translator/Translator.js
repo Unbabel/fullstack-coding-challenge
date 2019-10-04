@@ -99,7 +99,7 @@ const Translator = () => {
 
   return (
     <React.Fragment>
-      <div>
+      <div className="lg:max-w-3xl w-full lg:rounded lg:overflow-hidden lg:mt-10 lg:shadow-xl">
         <LanguageBar
           sourceLanguage={sourceLanguage}
           targetLanguage={targetLanguage}
@@ -114,7 +114,7 @@ const Translator = () => {
           loading={loading}
         ></TranslatorText>
       </div>
-      <div>
+      <div className="lg:max-w-3xl w-full lg:my-10 lg:rounded lg:overflow-hidden lg:shadow-xl">
         <Flipper
           flipKey={translationList.map(translation => translation.uid).join('')}
         >

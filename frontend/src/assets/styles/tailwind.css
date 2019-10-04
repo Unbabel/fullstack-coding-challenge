@@ -603,6 +603,12 @@ video {
   height: auto;
 }
 
+* {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
 .container {
   width: 100%;
 }
@@ -641,8 +647,8 @@ video {
 }
 
 .badge-success {
-  background-color: #b2f5ea;
-  color: #285e61;
+  background-color: #bee3f8;
+  color: #2c5282;
 }
 
 .badge-new {

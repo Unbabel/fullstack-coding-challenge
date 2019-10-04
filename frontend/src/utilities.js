@@ -1,4 +1,7 @@
-const shortnameMapper = {
+import React from 'react';
+import ReactCountryFlag from 'react-country-flag';
+
+const shortnameToNameMapper = {
   pt: 'Portuguese',
   en: 'English',
   fr: 'French',
@@ -15,7 +18,32 @@ const shortnameMapper = {
   'es-latam': 'Spanish(Latam)',
 };
 
-export const shortnameToName = shortname => shortnameMapper[shortname];
+const shortnameToFlagMapper = {
+  en: (
+    <ReactCountryFlag
+      code="gb-eng"
+      svg
+      styleProps={{
+        width: '17px',
+        height: '17px',
+      }}
+    ></ReactCountryFlag>
+  ),
+  es: (
+    <ReactCountryFlag
+      code="es"
+      svg
+      styleProps={{
+        width: '17px',
+        height: '17px',
+      }}
+    ></ReactCountryFlag>
+  ),
+};
+
+export const shortnameToFlag = shortname => shortnameToFlagMapper[shortname];
+
+export const shortnameToName = shortname => shortnameToNameMapper[shortname];
 
 export const sortByTranslatedText = (a, b) => {
   if (!a.translated_text) {

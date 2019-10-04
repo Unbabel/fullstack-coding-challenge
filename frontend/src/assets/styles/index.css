@@ -1,5 +1,9 @@
 @tailwind base;
 
+* {
+  @apply subpixel-antialiased font-sans;
+}
+
 @tailwind components;
 
 .badge {
@@ -7,7 +11,7 @@
 }
 
 .badge-success {
-  @apply bg-teal-200 text-teal-800;
+  @apply bg-blue-200 text-blue-800;
 }
 
 .badge-new {

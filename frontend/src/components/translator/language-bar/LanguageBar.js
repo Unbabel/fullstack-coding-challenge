@@ -9,7 +9,7 @@ const languageMap = {
 };
 
 const LanguageBar = ({ onClick, sourceLanguage, targetLanguage }) => (
-  <div className="flex bg-indigo-100 justify-between items-center py-3">
+  <div className="flex bg-gray-100 justify-between items-center py-3">
     <LanguageSelector>{languageMap[sourceLanguage]}</LanguageSelector>
     <SwapLanguageButton onClick={onClick}></SwapLanguageButton>
     <LanguageSelector>{languageMap[targetLanguage]}</LanguageSelector>

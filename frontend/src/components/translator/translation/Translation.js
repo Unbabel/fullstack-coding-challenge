@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Flipped } from 'react-flip-toolkit';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { shortnameToName } from '../../../utilities';
+import { shortnameToFlag, shortnameToName } from '../../../utilities';
 
 const statusMapper = {
   new: 'badge-new',
@@ -22,19 +22,34 @@ const Translation = ({ translation }) => {
   );
   return (
     <Flipped flipId={translation.uid}>
-      <div className="px-4 py-3 flex flex-col bg-white hover:bg-gray-100 border border-l-0 border-r-0 border-t-0">
-        <div className="flex items-baseline justify-between mb-1">
+      <div className="flex flex-col bg-white hover:bg-gray-200 border border-l-0 border-r-0 border-t-0">
+        <div className="px-4 py-3 flex items-baseline justify-between mb-1 bg-gray-100">
           <span className="text-gray-500 text-sm">
-            {shortnameToName(translation.source_language)} &rarr;{' '}
-            {shortnameToName(translation.target_language)}
+            <span className="mr-2 inline-block">
+              {shortnameToFlag(translation.source_language)}
+            </span>
+            <span className="hidden lg:inline-block">
+              {shortnameToName(translation.source_language)}
+            </span>
+            &rarr;
+            <div className="mx-2 inline-block">
+              {shortnameToFlag(translation.target_language)}
+            </div>
+            <span className="hidden lg:inline-block">
+              {shortnameToName(translation.target_language)}
+            </span>
           </span>
           <span className={`badge ${statusMapper[translation.status]}`}>
             {translation.status}
           </span>
         </div>
-        <div className="mt-2">
-          <div className="text-gray-600">{translation.text}</div>
-          <div className="mt-2 text-indigo-700">{translatedText}</div>
+        <div className="flex flex-col lg:flex-row lg:mt-0 items-baseline px-5 py-6 lg:px-6 lg:px leading-relaxed">
+          <div className="text-gray-600 lg:w-1/2 lg:pr-6">
+            {translation.text}
+          </div>
+          <div className="mt-6 text-gray-800 lg:w-1/2 lg:mt-0 lg:pl-6">
+            {translatedText}
+          </div>
         </div>
       </div>
     </Flipped>
