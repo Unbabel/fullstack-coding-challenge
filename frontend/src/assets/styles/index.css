@@ -27,3 +27,27 @@
 }
 
 @tailwind utilities;
+
+.transition {
+  transition: all 0.25s;
+}
+
+.transition-bg {
+  transition-property: background;
+}
+
+.transition-slow {
+  transition-duration: 0.5s;
+}
+
+.transition-slower {
+  transition-duration: 0.5s;
+}
+
+.transition-fast {
+  transition-duration: 0.15s;
+}
+
+.transition-faster {
+  transition-duration: 0.075s;
+}

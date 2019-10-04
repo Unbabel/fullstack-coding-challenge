@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { Flipped } from 'react-flip-toolkit';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { shortnameToFlag, shortnameToName } from '../../../utilities';
@@ -15,6 +15,8 @@ const statusMapper = {
 };
 
 const Translation = ({ translation }) => {
+  const [showDelete, setShowDelete] = useState(false);
+
   const translatedText = translation.translated_text ? (
     translation.translated_text
   ) : (
@@ -22,7 +24,11 @@ const Translation = ({ translation }) => {
   );
   return (
     <Flipped flipId={translation.uid}>
-      <div className="flex flex-col bg-white hover:bg-gray-200 border border-l-0 border-r-0 border-t-0">
+      <div
+        onMouseEnter={() => setShowDelete(true)}
+        onMouseLeave={() => setShowDelete(false)}
+        className="flex flex-col transition transition-bg bg-white hover:bg-gray-200 border border-l-0 border-r-0 border-t-0"
+      >
         <div className="px-4 py-3 flex items-baseline justify-between mb-1 bg-gray-100">
           <span className="text-gray-500 text-sm">
             <span className="mr-2 inline-block">
@@ -43,7 +49,7 @@ const Translation = ({ translation }) => {
             {translation.status}
           </span>
         </div>
-        <div className="flex flex-col lg:flex-row py-6 items-baseline leading-relaxed">
+        <div className="flex flex-col relative lg:flex-row py-6 items-baseline leading-relaxed">
           <div className="flex-1 flex text-gray-600 px-5 lg:px-6 lg:mt-0">
             {translation.text}
           </div>
@@ -54,6 +60,14 @@ const Translation = ({ translation }) => {
           >
             {translatedText}
           </div>
+          <button
+            type="button"
+            className={`transition block absolute right-0 px-3 py-2 bg-red-200 text-red-800 rounded -mt-4 mr-3 shadow-lg focus:outline-none hover:bg-red-300 active:shadow ${
+              showDelete ? 'opacity-100' : 'opacity-0'
+            }`}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </Flipped>

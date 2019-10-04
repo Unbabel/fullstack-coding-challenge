@@ -26,7 +26,7 @@ const TranslatorText = ({
         {translationText.length ? (
           <button
             type="button"
-            className="block text-gray-500 hover:text-gray-600 focus:outline-none"
+            className="block transition text-gray-500 hover:text-gray-600 focus:outline-none"
             onClick={handleClear}
           >
             <svg
@@ -42,7 +42,7 @@ const TranslatorText = ({
         {translationText.length ? (
           <button
             type="submit"
-            className="block text-gray-500 hover:text-gray-600 focus:outline-none"
+            className="block transition text-gray-500 hover:text-gray-600 focus:outline-none"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

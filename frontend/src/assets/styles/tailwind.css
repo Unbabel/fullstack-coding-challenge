@@ -11426,6 +11426,36 @@ video {
   z-index: auto;
 }
 
+.transition {
+  -webkit-transition: all 0.25s;
+  transition: all 0.25s;
+}
+
+.transition-bg {
+  -webkit-transition-property: background;
+  transition-property: background;
+}
+
+.transition-slow {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.transition-slower {
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.transition-fast {
+  -webkit-transition-duration: 0.15s;
+          transition-duration: 0.15s;
+}
+
+.transition-faster {
+  -webkit-transition-duration: 0.075s;
+          transition-duration: 0.075s;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
