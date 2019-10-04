@@ -4,7 +4,7 @@ from flask import Flask
 from flask_apscheduler import APScheduler
 from flask_cors import CORS
 from flask_migrate import Migrate
-from unbabel.config import DevelopmentConfig, ProductionConfig
+from unbabel.configuration import DevelopmentConfig, ProductionConfig
 from unbabel.models import db
 from unbabel.utilities import update_translations
 
@@ -13,8 +13,8 @@ migrate = Migrate()
 
 def create_app(development=True):
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app)
     app.config.from_object(ProductionConfig())
+    CORS(app)
 
     if development:
         app.config.from_object(DevelopmentConfig())

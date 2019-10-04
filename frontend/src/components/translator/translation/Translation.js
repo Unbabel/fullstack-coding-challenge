@@ -50,12 +50,12 @@ const Translation = ({ translation, deleteTranslation, deleteLoading }) => {
             {translation.status}
           </span>
         </div>
-        <div className="flex flex-col relative lg:flex-row py-6 items-baseline leading-relaxed">
-          <div className="flex-1 flex text-gray-600 px-5 lg:px-6 lg:mt-0">
+        <div className="flex flex-col relative lg:flex-row py-6 leading-relaxed px-5 lg:px-6">
+          <div className="flex-1 flex text-gray-600 lg:mt-0 lg:mr-5">
             {translation.text}
           </div>
           <div
-            className={`flex-1 flex items-center mt-6 text-gray-800 px-5 lg:mt-0 lg:px-6 ${
+            className={`flex-1 flex items-center lg:ml-5 mt-6 text-gray-800 lg:mt-0 ${
               !translation.translated_text ? 'justify-center' : ''
             }`}
           >
