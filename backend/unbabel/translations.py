@@ -47,11 +47,8 @@ def get_translations():
 
 @bp.route("/delete/<translation_uid>", methods=("DELETE",))
 def delete_translation(translation_uid):
-    print(translation_uid)
     translation = Translation.query.filter_by(uid=translation_uid).first()
-    print(translation)
     response = unbabel.delete_translation(translation_uid)
-    print(response)
     db.session.delete(translation)
     db.session.commit()
 

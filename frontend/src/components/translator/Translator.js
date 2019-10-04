@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Flipper } from 'react-flip-toolkit';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { sortByTranslatedText } from '../../utilities';
 import LanguageBar from './language-bar/LanguageBar';
 import TranslationList from './translation-list/TranslationList';
@@ -18,6 +20,8 @@ const Translator = () => {
   const [translationText, setTranslationText] = useState('');
   const [translationList, setTranslationList] = useState([]);
   const [deleteLoading, setDeleteLoading] = useState(false);
+
+  const notify = message => toast(`${message}`, { type: 'error' });
 
   const swapLanguage = () => {
     const source = sourceLanguage;
@@ -40,17 +44,21 @@ const Translator = () => {
     }
     setLoadingNewTranslation(true);
 
-    const response = await axios.post('/translations/', {
-      text: translationText,
-      source_language: sourceLanguage,
-      target_language: targetLanguage,
-    });
-    const newTranslation = response.data;
+    try {
+      const response = await axios.post('/translations/', {
+        text: translationText,
+        source_language: sourceLanguage,
+        target_language: targetLanguage,
+      });
+      const newTranslation = response.data;
 
-    setTranslationText('');
-    setTranslationList(oldList =>
-      [newTranslation, ...oldList].sort(sortByTranslatedText)
-    );
+      setTranslationText('');
+      setTranslationList(oldList =>
+        [newTranslation, ...oldList].sort(sortByTranslatedText)
+      );
+    } catch (error) {
+      notify('Could not submit translation!');
+    }
     setLoadingNewTranslation(false);
   };
 
@@ -80,7 +88,7 @@ const Translator = () => {
         [...oldList].filter(translation => translation.uid !== translationUid)
       );
     } else {
-      console.log('SOMETHING WENT WRONG!!!');
+      notify('Could not delete translation!');
     }
     setDeleteLoading(false);
   };
@@ -105,10 +113,14 @@ const Translator = () => {
     let didCancel = false;
 
     async function fetchTranslations() {
-      const response = await axios.get('/translations/');
-      if (!didCancel) {
-        // Ignore if we started fetching something else
-        setTranslationList(response.data.sort(sortByTranslatedText));
+      try {
+        const response = await axios.get('/translations/');
+        if (!didCancel) {
+          // Ignore if we started fetching something else
+          setTranslationList(response.data.sort(sortByTranslatedText));
+        }
+      } catch (error) {
+        notify('Could not fetch translations!');
       }
     }
 
@@ -148,6 +160,17 @@ const Translator = () => {
           ></TranslationList>
         </Flipper>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+      />
     </React.Fragment>
   );
 };
