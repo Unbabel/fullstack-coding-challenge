@@ -8,6 +8,8 @@ unbabel = Unbabel()
 
 
 def update_translations():
+    """Updates all translations in the database whose status has changed."""
+
     app = db.get_app()
 
     # Need to use the app's context to access the translations whose status
@@ -33,6 +35,16 @@ def update_translations():
 
 
 def recently_updated_translations(since_last_checked=5):
+    """Returns all translations that were updated in the last
+    `since_last_checked` seconds in the database.
+
+    Args:
+        since_last_checked (int, optional): The time in seconds to check for
+        updated translations in the database. Defaults to 5.
+
+    Returns:
+        list: A list of all recently updated translations.
+    """
     last_checked = datetime.now() - timedelta(seconds=since_last_checked)
     app = db.get_app()
 

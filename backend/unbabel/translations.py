@@ -11,17 +11,27 @@ unbabel = Unbabel()
 
 @bp.route("/", methods=("POST", ))
 def add_translation():
+    """Route for adding a translation to the database.
+
+    Raises:
+        Exception: required text, source_language and target_language were not
+                   provided.
+
+    Returns:
+        JSON: The translation that was added to the database.
+    """
     try:
         text = request.json["text"].strip()
         source_language = request.json["source_language"]
         target_language = request.json["target_language"]
     except TypeError:
         raise Exception(
-            "You must provide text, its source language and a target language!")
+            "You must provide text, its source language and a target language!"
+        )
 
+    # Get translation from API and insert into database
     translation = unbabel.post_translation(
         text, source_language, target_language)
-
     database_translation = Translation(
         source_language=translation["source_language"],
         status=translation.get("status", "new"),
@@ -39,6 +49,11 @@ def add_translation():
 
 @bp.route("/", methods=("GET", ))
 def get_translations():
+    """Retrieves all translations currently in the database.
+
+    Returns:
+        JSON: A list of all translations currently in the database.
+    """
     translation_schema = TranslationSchema()
     translations = [translation_schema.dump(
         translation) for translation in Translation.query.all()]
@@ -48,6 +63,19 @@ def get_translations():
 
 @bp.route("/delete/<translation_uid>", methods=("DELETE",))
 def delete_translation(translation_uid):
+    """Deletes a translation with the given UID from the database and Unbabel's
+    API.
+
+    Args:
+        translation_uid (int or str): A translation's UID.
+
+    Raises:
+        Exception: translation with given UID does not exist in the database.
+
+    Returns:
+        JSON: A success message if translation was deleted, or an error message
+              if the message could not be deleted via the Unbabel API.
+    """
     translation = Translation.query.filter_by(uid=translation_uid).first()
 
     if not translation:
@@ -64,6 +92,13 @@ def delete_translation(translation_uid):
 
 @bp.route("/stream", methods=("GET",))
 def stream_translations():
+    """Streams all recently updated translations. The EventSource interface
+    can be used to receive these client-side.
+
+    Returns:
+        Response: A server-sent event containing the recently updated
+                  translations.
+    """
     translation_schema = TranslationSchema()
 
     def event_stream():
