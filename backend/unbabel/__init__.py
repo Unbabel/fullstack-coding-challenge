@@ -1,10 +1,9 @@
-import os
-
 from flask import Flask
 from flask_apscheduler import APScheduler
 from flask_cors import CORS
 from flask_migrate import Migrate
-from unbabel.configuration import DevelopmentConfig, ProductionConfig
+from unbabel.configuration import (DevelopmentConfiguration,
+                                   ProductionConfiguration)
 from unbabel.models import db
 from unbabel.utilities import update_translations
 
@@ -13,16 +12,11 @@ migrate = Migrate()
 
 def create_app(development=True):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(ProductionConfig())
+    app.config.from_object(ProductionConfiguration())
     CORS(app)
 
     if development:
-        app.config.from_object(DevelopmentConfig())
-
-    try:
-        os.makedirs(app.instance_path)
-    except OSError:
-        pass
+        app.config.from_object(DevelopmentConfiguration())
 
     # Add scheduler for updating incomplete translations
     scheduler = APScheduler()

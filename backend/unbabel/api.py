@@ -28,16 +28,24 @@ class Unbabel():
         response = requests.post(
             f"{self.base_url}translation/", json=body, headers=self.headers)
 
+        if not response:
+            raise Exception("Posting translation went wrong!")
+
         return response.json()
 
     def get_translation(self, uid):
         response = requests.get(
             f"{self.base_url}translation/{uid}", headers=self.headers)
+
+        if not response:
+            raise Exception("Getting translation went wrong!")
+
         return response.json()
 
     def delete_translation(self, uid):
         response = requests.delete(
             f"{self.base_url}translation/{uid}", headers=self.headers)
-        if response.ok:
-            return {"message": "success"}
-        return {"message": "error"}
+
+        if not response:
+            return {"message": "error"}
+        return {"message": "success"}

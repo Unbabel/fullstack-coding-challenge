@@ -1,6 +1,6 @@
 import json
 
-from flask import Blueprint, Response, request
+from flask import Blueprint, Response, jsonify, request
 from unbabel.api import Unbabel
 from unbabel.models import Translation, TranslationSchema, db
 from unbabel.utilities import recently_updated_translations
@@ -9,15 +9,15 @@ bp = Blueprint("translations", __name__, url_prefix="/translations")
 unbabel = Unbabel()
 
 
-def json_response(payload, status=200):
-    return json.dumps(payload), status, {"Content-Type": "application/json"}
-
-
 @bp.route("/", methods=("POST", ))
 def add_translation():
-    text = request.json["text"].strip()
-    source_language = request.json["source_language"]
-    target_language = request.json["target_language"]
+    try:
+        text = request.json["text"].strip()
+        source_language = request.json["source_language"]
+        target_language = request.json["target_language"]
+    except TypeError:
+        raise Exception(
+            "You must provide text, its source language and a target language!")
 
     translation = unbabel.post_translation(
         text, source_language, target_language)
@@ -34,7 +34,7 @@ def add_translation():
     db.session.add(database_translation)
     db.session.commit()
 
-    return json_response(translation)
+    return jsonify(translation)
 
 
 @bp.route("/", methods=("GET", ))
@@ -42,17 +42,24 @@ def get_translations():
     translation_schema = TranslationSchema()
     translations = [translation_schema.dump(
         translation) for translation in Translation.query.all()]
-    return json_response(translations)
+
+    return jsonify(translations)
 
 
 @bp.route("/delete/<translation_uid>", methods=("DELETE",))
 def delete_translation(translation_uid):
     translation = Translation.query.filter_by(uid=translation_uid).first()
+
+    if not translation:
+        raise Exception(
+            f"Could not find translation with uid {translation_uid} in "
+            "database!")
+
     response = unbabel.delete_translation(translation_uid)
     db.session.delete(translation)
     db.session.commit()
 
-    return json_response(response)
+    return jsonify(response)
 
 
 @bp.route("/stream", methods=("GET",))

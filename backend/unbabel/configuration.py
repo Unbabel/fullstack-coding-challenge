@@ -3,7 +3,7 @@ import os
 base_dir = os.path.abspath(os.path.dirname(__file__))
 
 
-class Config(object):
+class Configuration(object):
     DEBUG = False
     TESTING = False
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URI"]
@@ -19,14 +19,15 @@ class Config(object):
     SCHEDULER_API_ENABLED = True
 
 
-class ProductionConfig(Config):
+class ProductionConfiguration(Configuration):
     DEBUG = False
     TESTING = False
 
 
-class DevelopmentConfig(Config):
+class DevelopmentConfiguration(Configuration):
     DEBUG = True
 
 
-class TestingConfig(Config):
+class TestingConfiguration(Configuration):
     TESTING = True
+    SQL_ALCHEMY_DATABASE_URI = os.environ["DATABASE_URI_TESTING"]
