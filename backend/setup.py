@@ -6,5 +6,12 @@ setup(
     packages=find_packages(),
     install_requires=[
         "flask",
+        "python-dotenv",
+        "flask_apscheduler",
+        "flask_cors",
+        "flask_migrate",
+        "marshmallow_sqlalchemy",
+        "requests",
+        "psycopg2",
     ],
 )
