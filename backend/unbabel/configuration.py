@@ -6,7 +6,7 @@ base_dir = os.path.abspath(os.path.dirname(__file__))
 class Configuration(object):
     DEBUG = False
     TESTING = False
-    SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URI"]
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JOBS = [
         {
@@ -30,4 +30,4 @@ class DevelopmentConfiguration(Configuration):
 
 class TestingConfiguration(Configuration):
     TESTING = True
-    SQL_ALCHEMY_DATABASE_URI = os.environ["DATABASE_URI_TESTING"]
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URI_TESTING")

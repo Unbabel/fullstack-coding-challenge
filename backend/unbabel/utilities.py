@@ -34,13 +34,13 @@ def update_translations():
     db.session.commit()
 
 
-def recently_updated_translations(since_last_checked=5):
+def recently_updated_translations(since_last_checked=10):
     """Returns all translations that were updated in the last
     `since_last_checked` seconds in the database.
 
     Args:
         since_last_checked (int, optional): The time in seconds to check for
-        updated translations in the database. Defaults to 5.
+        updated translations in the database. Defaults to 10.
 
     Returns:
         list: A list of all recently updated translations.

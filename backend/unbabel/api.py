@@ -3,14 +3,11 @@ import os
 
 import requests
 
-dirname = os.path.dirname(os.path.realpath(__file__))
-
 
 class Unbabel():
     def __init__(self):
-        config = json.loads(open(f"{dirname}/../../config.json").read())
-        username = config["UNBABEL_USERNAME"]
-        api_key = config["UNBABEL_API_KEY"]
+        username = os.getenv("UNBABEL_USERNAME")
+        api_key = os.getenv("UNBABEL_API_KEY")
 
         self.headers = {
             "Authorization": f"ApiKey {username}:{api_key}",
