@@ -8,6 +8,9 @@ import LanguageBar from './language-bar/LanguageBar';
 import TranslationList from './translation-list/TranslationList';
 import TranslatorText from './translator-text/TranslatorText';
 
+const eventSource =
+  new EventSource('http://localhost:5000/translations/stream') || undefined;
+
 const Translator = () => {
   const [loadingTranslations, setLoadingTranslations] = useState(true);
   const [loadingNewTranslation, setLoadingNewTranslation] = useState(false);
@@ -100,8 +103,6 @@ const Translator = () => {
       });
       setTranslationList([...currentTranslations].sort(sortByTranslatedText));
     };
-    const eventSource =
-      new EventSource('http://localhost:5000/translations/stream') || undefined;
     if (eventSource) {
       eventSource.onmessage = event => {
         upsertTranslations(JSON.parse(event.data));
