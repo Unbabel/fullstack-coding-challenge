@@ -13,5 +13,6 @@ setup(
         "marshmallow_sqlalchemy",
         "requests",
         "psycopg2",
+        "gunicorn"
     ],
 )
